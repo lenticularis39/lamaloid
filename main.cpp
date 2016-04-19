@@ -14,12 +14,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <iostream>
-#include <SoundTouchDLL.h>
+#include <SoundTouch.h>
 
 using namespace std;
 
-int main()
+int main(const int argc, const char * argv[])
 {
-    cout << "Hello world!" << endl;
+    cout << "Nothing yet!";
     return 0;
 }
