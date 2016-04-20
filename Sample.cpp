@@ -14,9 +14,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Sample.h"
+#include <cstring>
 
 const char* riff_signature = "RIFF";
 const char* wav_signature = "WAVE";
+const char* data_signature = "data";
 
 Sample::Sample(char *filename)
 // Constructor for loading from a WAV File
@@ -50,10 +52,21 @@ Sample::Sample(char *filename)
     sampleRate = buffer[0x18] + (buffer[0x19] * 256); // Big endian
     channels = buffer[0x16]; // Again - it's 1 word long, but only 1 or 2
 
-    // Print them (debug)
-    cout << sampleSize << "-bytes, sample rate " << sampleRate << ", " << (int)channels << " channels." << endl;
+    // Find data signature and offset
+    bool flag = false;
+    int pos = 0;
 
-    // Not implemented yet
+    for(; !flag; pos++) {
+        if(pos >= fileSize) crash("Wrong WAV file format (missing data signature");
+        flag = true;
+        for(int i = 0; i < 4; i++) {
+            if(buffer[pos + i] != data_signature[i]) flag = false;
+        }
+    }
+    pos += 6;
+
+    //
+
 
     delete[] buffer;
 }
