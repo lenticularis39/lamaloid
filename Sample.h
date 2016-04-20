@@ -29,6 +29,7 @@ class Sample
         float *samples;
         unsigned sampleRate;
         int sampleSize;
+        int sampleCount;
         char channels;
 
         Sample(char *filename);
