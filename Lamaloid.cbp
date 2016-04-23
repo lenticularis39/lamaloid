@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Sample.cpp" />
+		<Unit filename="Sample.h" />
+		<Unit filename="SoundTouch_wrapper/SoundTouch.cpp" />
+		<Unit filename="SoundTouch_wrapper/SoundTouch.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
