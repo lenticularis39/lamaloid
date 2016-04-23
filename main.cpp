@@ -16,7 +16,9 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include <SoundTouch.h>
+
+#include "SoundTouch_wrapper/SoundTouch.h"
+#include "Sample.h"
 
 using namespace std;
 
@@ -29,33 +31,11 @@ int main(const int argc, const char * argv[])
 {
     // File reading test
     char filename[PATH_MAX];
-    int bytes;
-    int sampleRate;
-
-    char *buffer;
-    float *samples;
-    long fileSize;
 
     cout << "Enter filename:";
     cin >> filename;
-    cout << "Enter bytes (8, 16, 32, 64): ";
-    cin >> bytes;
-    cout << "Enter bitrate: ";
-    cin >> sampleRate;
 
-    ifstream file;
-    file.open(filename, ios::in);
-    if(file.tellg() == -1) crash("File does not exist.");
+    Sample smp(filename);
 
-    file.seekg(0, ios::end);
-    fileSize = file.tellg();
-    buffer = new char[file.tellg()];
-    file.seekg(0, ios::beg);
-    file.read(buffer, fileSize);
-
-    //for(int i = 0; i < fileSize; i++) cout << buffer[i];
-
-    delete[] buffer;
-    file.close();
     return 0;
 }
